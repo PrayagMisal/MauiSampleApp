@@ -1,4 +1,6 @@
-﻿using AndroidX.Annotations;
+﻿#if ANDROID
+using AndroidX.Annotations;
+#endif
 
 namespace MauiSampleApp.ViewModels
 {
