@@ -9,4 +9,4 @@ Work done so far...
 Tested in android only..till now..
 
 # Screenshots
-<img src="https://github.com/PrayagMisal/MauiSampleApp/blob/master/LoginPage.png" width="300" height="600">
+<img src="https://github.com/PrayagMisal/MauiSampleApp/blob/master/LoginPage.png" width="280" height="500">
