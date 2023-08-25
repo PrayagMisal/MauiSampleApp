@@ -10,3 +10,4 @@ Tested in android only..till now..
 
 # Screenshots
 ![Screenshot](https://github.com/PrayagMisal/MauiSampleApp/blob/master/loginPage.jpg)
+![image](https://github.com/PrayagMisal/MauiSampleApp/blob/master/loginPage.jpg) with <img src="https://github.com/PrayagMisal/MauiSampleApp/blob/master/loginPage.jpg" width="100" height="100">
