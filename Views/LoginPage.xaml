@@ -1,13 +1,143 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiSampleApp.Views.LoginPage"
-             Title="LoginPage"
-             xmlns:viewModels="clr-namespace:MauiSampleApp.ViewModels"
-             x:DataType="viewModels:LoginViewModel">
+<ContentPage
+    x:Class="MauiSampleApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Cc="clr-namespace:MauiSampleApp.Controls"
+    xmlns:helpers="clr-namespace:MauiSampleApp.Helpers"
+    xmlns:viewModels="clr-namespace:MauiSampleApp.ViewModels"
+    Title="LoginPage"
+    x:DataType="viewModels:LoginViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Cc:BorderlessEntry">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="PlaceholderColor" Value="White" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="100" />
+                <Setter Property="TextTransform" Value="Uppercase" />
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="Padding" Value="10,0,10,0" />
+                <Setter Property="Background" Value="#33FFFFFF" />
+                <Setter Property="Stroke" Value="White" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 100" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+            <Style TargetType="Path">
+                <Setter Property="Aspect" Value="Fill" />
+                <Setter Property="Fill" Value="White" />
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
-            <Label Text="Demo text" />
+            <!--  Background image  -->
+            <Image Aspect="AspectFill" Source="model.jpg" />
+            <Grid RowDefinitions="*,Auto">
+                <!--  xam logo  -->
+                <Image
+                    Margin="0,0,0,80"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="ic_xamlogo.png"
+                    VerticalOptions="End"
+                    WidthRequest="100" />
+                <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto">
+                    <!--  Greeting label  -->
+                    <Label
+                        FontSize="{x:Static helpers:FontSizeHelper.ExtraBigSize}"
+                        HorizontalOptions="Center"
+                        Text="Hello!"
+                        TextColor="White" />
+                    <!--  Greeting description  -->
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,10,0,40"
+                        FontSize="{x:Static helpers:FontSizeHelper.MediumSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Lorem ipsum dolor sit&#10; amet, consetetur"
+                        TextColor="White" />
+                    <Grid
+                        Grid.Row="2"
+                        Padding="30,0"
+                        RowDefinitions="Auto,Auto,Auto,Auto">
+                        <!--  Username entry  -->
+                        <Border>
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <!--  Username path icon  -->
+                                <Path helpers:AttachedCollection.StringPathData="{x:Static helpers:PathData.Username}" />
+                                <Cc:BorderlessEntry
+                                    Grid.Column="1"
+                                    Placeholder="Username"
+                                    ReturnCommand="{Binding UserNameDoneCommand}"
+                                    ReturnCommandParameter="{x:Reference EntryPassword}"
+                                    ReturnType="Done"
+                                    Text="{Binding UserName}" />
+                            </Grid>
+                        </Border>
+                        <!--  Password entry  -->
+                        <Border Grid.Row="1">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <!--  Password path icon  -->
+                                <Path helpers:AttachedCollection.StringPathData="{x:Static helpers:PathData.Lock}" />
+                                <Cc:BorderlessEntry
+                                    x:Name="EntryPassword"
+                                    Grid.Column="1"
+                                    IsPassword="True"
+                                    Placeholder="Password"
+                                    ReturnCommand="{Binding LoginCommand}"
+                                    ReturnType="Go"
+                                    Text="{Binding Password}" />
+                            </Grid>
+                        </Border>
+                        <Grid
+                            Grid.Row="2"
+                            ColumnDefinitions="*,*"
+                            ColumnSpacing="10">
+                            <!--  Signup button  -->
+                            <Button
+                                Background="Transparent"
+                                BorderColor="White"
+                                BorderWidth="1"
+                                Command="{Binding SignUpCommand}"
+                                Text="SignUp" />
+                            <!--  Login button  -->
+                            <Button
+                                Grid.Column="1"
+                                Background="#038577"
+                                Command="{Binding LoginCommand}"
+                                Text="Login" />
+                        </Grid>
+                        <!--  Connect with label  -->
+                        <Label
+                            Grid.Row="3"
+                            Margin="0,20,0,10"
+                            HorizontalOptions="Center"
+                            TextColor="White">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="or connect with " />
+                                    <Span
+                                        Text="Facebook"
+                                        TextColor="#0d6efd"
+                                        TextDecorations="Underline" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SignInLoginWithFacebookCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

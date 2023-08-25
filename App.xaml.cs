@@ -11,6 +11,7 @@ namespace MauiSampleApp
             _navigationService = navigationService;
             _navigationService.RegisterForPropertyChangeEvent();
             _navigationService.InitializeAsync();
+
         }
     }
 }

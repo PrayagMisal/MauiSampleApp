@@ -35,11 +35,23 @@ namespace MauiSampleApp
             builder.Services.AddSingleton<INavigationService, NavigationService>();
 
             #endregion
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-
+            RemoveBorders();
             return builder.Build();
+        }
+
+        public static void RemoveBorders()
+        {
+            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("BorderlessEntry", (handler, view) => 
+            {
+#if ANDROID
+                handler.PlatformView.Background = null;
+                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+#endif
+            });
         }
     }
 }
