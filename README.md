@@ -7,4 +7,4 @@ Work done so far...
 2) Made use of path the icons which you can see in Username and Password Entry.
 
 # Screenshots
-![Screenshot](https://github.com/PrayagMisal/MauiSampleApp/blob/master/loginPage.png)
+![Screenshot](https://github.com/PrayagMisal/MauiSampleApp/blob/master/loginPage.jpg)
